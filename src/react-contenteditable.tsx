@@ -54,7 +54,7 @@ export default class ContentEditable extends React.Component<Props> {
         } : innerRef || this.el,
         onInput: this.emitChange,
         onBlur: this.props.onBlur || this.emitChange,
-        contentEditable: !this.props.disabled,
+        contentEditable: this.props.contentEditable,
         dangerouslySetInnerHTML: { __html: html }
       },
       this.props.children);
@@ -78,7 +78,7 @@ export default class ContentEditable extends React.Component<Props> {
     }
 
     // Handle additional properties
-    return props.disabled !== nextProps.disabled ||
+    return props.contentEditable !== nextProps.contentEditable ||
       props.tagName !== nextProps.tagName ||
       props.className !== nextProps.className ||
       props.innerRef !== nextProps.innerRef ||
@@ -134,7 +134,7 @@ export interface Props {
   html: string,
   onChange?: Function,
   onBlur?: Function,
-  disabled?: boolean,
+  contentEditable?: string,
   tagName?: string,
   className?: string,
   style?: Object,
